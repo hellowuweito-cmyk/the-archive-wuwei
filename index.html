@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ARCHIVE — A record of completed works from the hands of Wu Wei.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Courier+Prime&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f0ece4; --ink:#1a1814; --ink-light:#6b6760; --ink-faint:#a09d99; --rule:#c8c4bc; --plate-bg:#ece8e0; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{background:var(--bg);color:var(--ink);font-family:'EB Garamond',Georgia,serif;font-size:16px;line-height:1.6;}
+  body{max-width:960px;margin:0 auto;padding:0 48px 120px;}
+
+  header{padding:80px 0 60px;text-align:center;border-bottom:1px solid var(--rule);margin-bottom:72px;}
+  .title-main{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(2.6rem,6vw,4.8rem);letter-spacing:0.35em;text-transform:uppercase;line-height:1;margin-bottom:20px;}
+  .title-sub{font-family:'Courier Prime',monospace;font-size:0.7rem;letter-spacing:0.18em;color:var(--ink-light);text-transform:uppercase;}
+
+  nav{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:72px;padding-bottom:16px;border-bottom:1px solid var(--rule);}
+  .nav-count{font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--ink-faint);letter-spacing:0.12em;text-transform:uppercase;}
+  .nav-filter{display:flex;gap:24px;list-style:none;flex-wrap:wrap;}
+  .nav-filter li{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--ink-light);text-transform:uppercase;cursor:pointer;transition:color 0.2s;}
+  .nav-filter li:hover,.nav-filter li.active{color:var(--ink);}
+  .nav-filter li.active{text-decoration:underline;text-underline-offset:3px;}
+
+  /* Works grid */
+  .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:64px 48px;}
+  .plate{cursor:pointer;}
+  .plate-image-wrap{position:relative;width:100%;padding-bottom:100%;overflow:hidden;background:var(--plate-bg);border:1px solid var(--rule);margin-bottom:16px;}
+  .plate-image-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.92;transition:transform 0.6s ease,opacity 0.4s ease;display:block;}
+  .plate:hover .plate-image-wrap img{opacity:1;}
+  .plate-no{position:absolute;top:10px;left:12px;font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink-faint);z-index:2;}
+  .plate-meta{padding:0 2px;}
+  .plate-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-style:italic;font-size:1rem;line-height:1.3;margin-bottom:6px;}
+  .plate-details{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--ink-light);line-height:1.8;text-transform:uppercase;}
+  .plate-status{display:inline-block;font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px;padding-bottom:1px;border-bottom:1px solid currentColor;}
+  .status-available{color:var(--ink);}
+  .status-sold{color:var(--ink-faint);text-decoration:line-through;}
+  .plate.expanded .plate-image-wrap img{transform:scale(1.02);opacity:1;}
+  .plate-expanded-info{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.5s ease,opacity 0.4s ease 0.1s;}
+  .plate.expanded .plate-expanded-info{max-height:800px;opacity:1;margin-top:16px;}
+  .expanded-inner{padding:16px 0 0;border-top:1px solid var(--rule);}
+  .expanded-desc{font-size:0.82rem;line-height:1.75;color:var(--ink);margin-bottom:14px;font-style:italic;}
+  .expanded-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;margin-bottom:6px;}
+  .expanded-inquiry{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;}
+  .expanded-gallery{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .expanded-gallery img{width:calc(33.333% - 6px);aspect-ratio:1;object-fit:cover;border:1px solid var(--rule);opacity:0.88;cursor:pointer;transition:opacity 0.3s;}
+  .expanded-gallery img:hover{opacity:1;}
+
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(15,13,11,0.97);z-index:500;flex-direction:column;align-items:center;justify-content:center;}
+  .lightbox.open{display:flex;}
+  .lightbox-img{max-width:92vw;max-height:80vh;object-fit:contain;display:block;}
+  .lightbox-top{position:fixed;top:0;left:0;right:0;display:flex;justify-content:flex-end;padding:20px 24px;}
+  .lightbox-close{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(240,236,228,0.6);background:none;border:none;cursor:pointer;padding:8px 12px;}
+  .lightbox-close:hover{color:rgba(240,236,228,1);}
+  .lightbox-bottom{display:flex;align-items:center;gap:32px;margin-top:24px;}
+  .lightbox-nav{font-family:'Courier Prime',monospace;font-size:0.7rem;color:rgba(240,236,228,0.45);background:none;border:none;cursor:pointer;padding:8px 16px;transition:color 0.2s;}
+  .lightbox-nav:hover{color:rgba(240,236,228,0.9);}
+  .lightbox-counter{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.12em;color:rgba(240,236,228,0.3);min-width:40px;text-align:center;}
+
+  /* Generic page section */
+  .page-section{display:none;padding:0 0 80px;}
+  .page-section.open{display:block;}
+  .page-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--rule);}
+  .page-label{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:20px;display:block;}
+
+  /* Inquiry page */
+  .inquiry-block{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--rule);}
+  .inquiry-block:last-of-type{border-bottom:none;}
+  .inquiry-block p{font-size:1rem;line-height:1.95;color:var(--ink);margin-bottom:24px;font-style:italic;}
+  .inquiry-block p:last-child{margin-bottom:0;}
+  .page-cta{margin-top:56px;padding-top:40px;border-top:1px solid var(--rule);text-align:center;}
+  .page-cta-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;font-style:italic;color:var(--ink-light);margin-bottom:28px;line-height:1.9;}
+  .page-cta-link{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:color 0.2s;}
+  .page-cta-link:hover{color:var(--ink-light);}
+
+  /* Courses */
+  .courses-body{font-size:1rem;line-height:1.95;font-style:italic;color:var(--ink);margin-bottom:32px;white-space:pre-wrap;}
+  .courses-cta-btn{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:color 0.2s;display:inline-block;}
+  .courses-cta-btn:hover{color:var(--ink-light);}
+
+  /* Readings */
+  .readings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 40px;}
+  .reading-card{cursor:default;}
+  .reading-cover{position:relative;width:100%;padding-bottom:140%;overflow:hidden;background:var(--plate-bg);border:1px solid var(--rule);margin-bottom:14px;}
+  .reading-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.9;transition:opacity 0.3s;}
+  .reading-cover:hover img{opacity:1;}
+  .reading-no-cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .reading-no-cover span{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink-faint);}
+  .reading-title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:0.95rem;margin-bottom:4px;line-height:1.3;}
+  .reading-author{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.08em;color:var(--ink-light);text-transform:uppercase;margin-bottom:10px;}
+  .reading-download{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;border-bottom:1px solid var(--ink-faint);padding-bottom:1px;transition:color 0.2s,border-color 0.2s;}
+  .reading-download:hover{color:var(--ink);border-color:var(--ink);}
+
+  /* Spoken / YouTube */
+  .spoken-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 40px;}
+  .video-card{}
+  .video-thumb{position:relative;width:100%;padding-bottom:56.25%;background:var(--plate-bg);border:1px solid var(--rule);cursor:pointer;overflow:hidden;margin-bottom:14px;}
+  .video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.3s;}
+  .video-thumb:hover img{opacity:1;}
+  .video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;}
+  .video-play-btn{width:48px;height:48px;border-radius:50%;background:rgba(26,24,20,0.7);display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+  .video-thumb:hover .video-play-btn{background:rgba(26,24,20,0.9);}
+  .video-play-icon{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid rgba(240,236,228,0.9);margin-left:4px;}
+  .video-embed{position:relative;width:100%;padding-bottom:56.25%;background:#000;border:1px solid var(--rule);margin-bottom:14px;display:none;}
+  .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+  .video-title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:0.95rem;line-height:1.3;}
+
+  /* Loading/empty */
+  .loading-state,.empty-state{grid-column:1/-1;text-align:center;padding:80px 0;font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--ink-faint);text-transform:uppercase;line-height:2;}
+  .no-image-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .no-image-placeholder span{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink-faint);}
+
+  /* Admin toggle */
+  .admin-toggle{position:fixed;bottom:18px;right:20px;font-family:'Courier Prime',monospace;font-size:0.45rem;letter-spacing:0.08em;text-transform:uppercase;color:transparent;background:none;border:none;padding:8px;cursor:default;transition:color 0.4s;user-select:none;}
+  .admin-toggle:hover{color:var(--ink-faint);cursor:pointer;}
+
+  /* Password */
+  .password-overlay{display:none;position:fixed;inset:0;background:rgba(240,236,228,0.98);z-index:200;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
+  .password-overlay.open{display:flex;}
+  .password-label{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-light);}
+  .password-input{font-family:'EB Garamond',Georgia,serif;font-size:1.2rem;background:transparent;border:none;border-bottom:1px solid var(--ink);padding:6px 0;color:var(--ink);outline:none;width:220px;text-align:center;letter-spacing:0.2em;border-radius:0;}
+  .password-error{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);opacity:0;transition:opacity 0.2s;}
+  .password-error.visible{opacity:1;}
+  .password-cancel{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);background:none;border:none;cursor:pointer;}
+
+  /* Admin overlay */
+  .admin-overlay{display:none;position:fixed;inset:0;background:rgba(240,236,228,0.97);z-index:100;overflow-y:auto;padding:64px 48px;}
+  .admin-overlay.open{display:block;}
+  .admin-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px;padding-bottom:16px;border-bottom:1px solid var(--rule);max-width:640px;}
+  .admin-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;}
+  .admin-close{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);cursor:pointer;background:none;border:none;}
+  .admin-tabs{display:flex;gap:24px;margin-bottom:36px;max-width:640px;border-bottom:1px solid var(--rule);}
+  .admin-tab{font-family:'Courier Prime',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);cursor:pointer;padding-bottom:12px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.2s;}
+  .admin-tab.active{color:var(--ink);border-bottom-color:var(--ink);}
+  .admin-tab-panel{display:none;max-width:640px;}
+  .admin-tab-panel.active{display:block;}
+
+  /* Forms */
+  .admin-form{display:grid;gap:20px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-label{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light);}
+  .form-input,.form-select,.form-textarea{font-family:'EB Garamond',Georgia,serif;font-size:0.9rem;background:transparent;border:none;border-bottom:1px solid var(--rule);padding:6px 0;color:var(--ink);outline:none;transition:border-color 0.2s;width:100%;border-radius:0;-webkit-appearance:none;}
+  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--ink);}
+  .form-textarea{resize:vertical;min-height:72px;}
+  .form-submit{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;background:var(--ink);color:var(--bg);border:none;padding:14px 32px;cursor:pointer;width:fit-content;transition:opacity 0.2s;}
+  .form-submit:hover{opacity:0.8;}
+  .form-submit:disabled{opacity:0.4;cursor:not-allowed;}
+  .form-msg{font-family:'Courier Prime',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;display:none;}
+  .form-msg.visible{display:inline-block;}
+  .form-msg.error{color:var(--ink);}
+  .form-msg.success{color:var(--ink-light);}
+
+  /* Admin list */
+  .admin-list-section{margin-top:48px;border-top:1px solid var(--rule);padding-top:28px;}
+  .admin-list-title{font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:20px;}
+  .admin-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);gap:12px;}
+  .admin-item-name{font-style:italic;font-size:0.9rem;flex:1;}
+  .admin-item-actions{display:flex;gap:16px;flex-shrink:0;}
+  .admin-item-edit,.admin-item-remove{font-family:'Courier Prime',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);cursor:pointer;background:none;border:none;transition:color 0.2s;}
+  .admin-item-edit:hover,.admin-item-remove:hover{color:var(--ink);}
+
+  /* Footer */
+  footer{margin-top:100px;padding-top:24px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;}
+  .footer-text{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;}
+
+  @media(max-width:700px){
+    body{padding:0 24px 80px;}
+    .works-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
+    .readings-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
+    .spoken-grid{grid-template-columns:1fr;}
+    header{padding:48px 0 40px;}
+    nav{flex-direction:column;gap:16px;}
+    .admin-overlay{padding:40px 24px;}
+    .expanded-gallery img{width:calc(50% - 4px);}
+  }
+  @media(max-width:440px){
+    .works-grid{grid-template-columns:1fr;}
+    .readings-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="title-main">The Archive</h1>
+  <p class="title-sub">A record of completed works from the hands of Wu Wei.</p>
+</header>
+
+<nav>
+  <span class="nav-count" id="work-count">— works</span>
+  <ul class="nav-filter">
+    <li class="active" data-page="archive" data-filter="all">All</li>
+    <li data-page="archive" data-filter="Available">Available</li>
+    <li data-page="inquire">To Inquire</li>
+    <li data-page="courses">Courses</li>
+    <li data-page="readings">Readings</li>
+    <li data-page="spoken">Spoken</li>
+  </ul>
+</nav>
+
+<main>
+  <div class="works-grid" id="works-grid">
+    <div class="loading-state">Loading archive…</div>
+  </div>
+</main>
+
+<!-- INQUIRY PAGE -->
+<div class="page-section" id="page-inquire">
+  <h2 class="page-title">To Inquire</h2>
+  <div class="inquiry-block">
+    <span class="page-label">The way the work is done</span>
+    <p>I do not approach ceramics as an artist creating an object, but as a practitioner in service of the present moment.</p>
+    <p>Each piece is a one-in-a-lifetime offering shaped through a deep inner practice of presence and devotion.</p>
+    <p>Before entering the studio, I follow a personal ceremonial process to open the working space and devote the work to the Great Spirit and to all the elements involved.</p>
+    <p>I pray for the work to be clear, for the present moment to guide me, and for those who will one day hold and use this piece. I welcome whatever will arise in the process, allowing the present moment to unfold through the hands. No personal intention, narrative, or emotional imprint is placed into the work. The ceramic must remain clean, open, and free to serve whoever it reaches.</p>
+  </div>
+  <div class="inquiry-block">
+    <span class="page-label">On each piece</span>
+    <p>I do not create "collections" or serial pieces. Every ceramic vessel is born from the particular moment in which it was shaped through hands guided by trust in the Dao of things.</p>
+  </div>
+  <div class="inquiry-block">
+    <span class="page-label">Before choosing</span>
+    <p>Before choosing a piece, please ask yourself if you feel aligned with this way of working.</p>
+    <p>This is not work driven by trends, marketing, or self-expression. It is a devotional practice — an offering to life itself.</p>
+    <p>If this approach resonates with you, the piece you are considering is now ready to serve.</p>
+  </div>
+  <div class="page-cta">
+    <p class="page-cta-text">This is not an online shop.<br>To inquire about a piece, reach out directly.</p>
+    <a class="page-cta-link" href="https://www.instagram.com/wuweito/" target="_blank">Inquire via Instagram DM</a>
+  </div>
+</div>
+
+<!-- COURSES PAGE -->
+<div class="page-section" id="page-courses">
+  <h2 class="page-title">Courses</h2>
+  <div id="courses-content-display">
+    <p style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;">No courses announced yet.</p>
+  </div>
+</div>
+
+<!-- READINGS PAGE -->
+<div class="page-section" id="page-readings">
+  <h2 class="page-title">Readings</h2>
+  <div class="readings-grid" id="readings-grid">
+    <p style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;grid-column:1/-1;">No readings added yet.</p>
+  </div>
+</div>
+
+<!-- SPOKEN PAGE -->
+<div class="page-section" id="page-spoken">
+  <h2 class="page-title">Spoken</h2>
+  <div class="spoken-grid" id="spoken-grid">
+    <p style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;grid-column:1/-1;">No videos added yet.</p>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-text">The Archive</span>
+  <span class="footer-text">
+    <a href="https://www.instagram.com/wuweito/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--ink-faint);padding-bottom:1px;">Inquiries via Instagram DM</a>
+  </span>
+</footer>
+
+<button class="admin-toggle" id="admin-toggle">Edit Archive</button>
+
+<!-- PASSWORD -->
+<div class="password-overlay" id="password-overlay">
+  <span class="password-label">Enter password to edit</span>
+  <input class="password-input" type="password" id="password-input" autocomplete="off">
+  <span class="password-error" id="password-error">Incorrect password</span>
+  <button class="password-cancel" id="password-cancel">Cancel</button>
+</div>
+
+<!-- ADMIN OVERLAY -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-header">
+    <span class="admin-title">Archive Editor</span>
+    <button class="admin-close" id="admin-close">Close</button>
+  </div>
+
+  <div class="admin-tabs">
+    <div class="admin-tab active" data-tab="works">Works</div>
+    <div class="admin-tab" data-tab="readings">Readings</div>
+    <div class="admin-tab" data-tab="spoken">Spoken</div>
+    <div class="admin-tab" data-tab="courses">Courses</div>
+  </div>
+
+  <!-- WORKS TAB -->
+  <div class="admin-tab-panel active" id="tab-works">
+    <form class="admin-form" id="add-work-form" autocomplete="off">
+      <div style="font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:4px;" id="form-mode-label">Adding new work</div>
+      <input type="hidden" id="f-edit-id">
+      <div class="form-group"><label class="form-label">Main Image URL <span style="font-size:0.55rem;color:var(--ink-faint);">(Cloudinary)</span></label><input class="form-input" type="text" id="f-image-url" placeholder="https://res.cloudinary.com/…"></div>
+      <div class="form-group"><label class="form-label">Extra Image 2</label><input class="form-input" type="text" id="f-image-2" placeholder="https://res.cloudinary.com/…"></div>
+      <div class="form-group"><label class="form-label">Extra Image 3</label><input class="form-input" type="text" id="f-image-3" placeholder="https://res.cloudinary.com/…"></div>
+      <div class="form-group"><label class="form-label">Extra Image 4</label><input class="form-input" type="text" id="f-image-4" placeholder="https://res.cloudinary.com/…"></div>
+      <div class="form-group"><label class="form-label">Title</label><input class="form-input" type="text" id="f-title" placeholder="Work title"></div>
+      <div class="form-group"><label class="form-label">Year</label><input class="form-input" type="text" id="f-year" placeholder="2024"></div>
+      <div class="form-group"><label class="form-label">Material</label><input class="form-input" type="text" id="f-material" placeholder="e.g. Stoneware, iron glaze"></div>
+      <div class="form-group"><label class="form-label">Dimensions</label><input class="form-input" type="text" id="f-dimensions" placeholder="e.g. H. 24 cm"></div>
+      <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="f-description" placeholder="Brief note on the work..."></textarea></div>
+      <div class="form-group"><label class="form-label">Price</label><input class="form-input" type="text" id="f-price" placeholder="e.g. €380"></div>
+      <div class="form-group"><label class="form-label">Status</label><select class="form-select" id="f-status"><option value="Available">Available</option><option value="Sold">Sold</option></select></div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <button type="submit" class="form-submit" id="form-submit-btn">Add to Archive</button>
+        <button type="button" class="form-submit" id="form-cancel-edit" style="display:none;background:transparent;color:var(--ink-light);border:1px solid var(--rule);">Cancel Edit</button>
+        <span class="form-msg error" id="form-error"></span>
+        <span class="form-msg success" id="form-success">Saved.</span>
+      </div>
+    </form>
+    <div class="admin-list-section">
+      <div class="admin-list-title">Works in Archive</div>
+      <div id="admin-works-list"></div>
+    </div>
+  </div>
+
+  <!-- READINGS TAB -->
+  <div class="admin-tab-panel" id="tab-readings">
+    <form class="admin-form" id="add-reading-form" autocomplete="off">
+      <div style="font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:4px;" id="reading-mode-label">Adding new reading</div>
+      <input type="hidden" id="r-edit-id">
+      <div class="form-group"><label class="form-label">Cover Image URL <span style="font-size:0.55rem;color:var(--ink-faint);">(Cloudinary)</span></label><input class="form-input" type="text" id="r-cover" placeholder="https://res.cloudinary.com/…"></div>
+      <div class="form-group"><label class="form-label">Title</label><input class="form-input" type="text" id="r-title" placeholder="Book title"></div>
+      <div class="form-group"><label class="form-label">Author</label><input class="form-input" type="text" id="r-author" placeholder="Author name"></div>
+      <div class="form-group"><label class="form-label">Dropbox PDF Link</label><input class="form-input" type="text" id="r-pdf" placeholder="https://www.dropbox.com/s/…"></div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <button type="submit" class="form-submit" id="reading-submit-btn">Add Reading</button>
+        <button type="button" class="form-submit" id="reading-cancel-edit" style="display:none;background:transparent;color:var(--ink-light);border:1px solid var(--rule);">Cancel Edit</button>
+        <span class="form-msg error" id="reading-error"></span>
+        <span class="form-msg success" id="reading-success">Saved.</span>
+      </div>
+    </form>
+    <div class="admin-list-section">
+      <div class="admin-list-title">Readings in Archive</div>
+      <div id="admin-readings-list"></div>
+    </div>
+  </div>
+
+  <!-- SPOKEN TAB -->
+  <div class="admin-tab-panel" id="tab-spoken">
+    <form class="admin-form" id="add-video-form" autocomplete="off">
+      <div style="font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:4px;" id="video-mode-label">Adding new video</div>
+      <input type="hidden" id="v-edit-id">
+      <div class="form-group"><label class="form-label">YouTube URL</label><input class="form-input" type="text" id="v-url" placeholder="https://www.youtube.com/watch?v=…"></div>
+      <div class="form-group"><label class="form-label">Title <span style="font-size:0.55rem;color:var(--ink-faint);">(optional — auto-fetched from YouTube)</span></label><input class="form-input" type="text" id="v-title" placeholder="Video title"></div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <button type="submit" class="form-submit" id="video-submit-btn">Add Video</button>
+        <button type="button" class="form-submit" id="video-cancel-edit" style="display:none;background:transparent;color:var(--ink-light);border:1px solid var(--rule);">Cancel Edit</button>
+        <span class="form-msg error" id="video-error"></span>
+        <span class="form-msg success" id="video-success">Saved.</span>
+      </div>
+    </form>
+    <div class="admin-list-section">
+      <div class="admin-list-title">Videos in Archive</div>
+      <div id="admin-videos-list"></div>
+    </div>
+  </div>
+
+  <!-- COURSES TAB -->
+  <div class="admin-tab-panel" id="tab-courses">
+    <div class="admin-form">
+      <div class="form-group"><label class="form-label">Page Text</label><textarea class="form-textarea" id="courses-text" style="min-height:160px;" placeholder="Describe your upcoming courses here…"></textarea></div>
+      <div class="form-group"><label class="form-label">CTA Button Label <span style="font-size:0.55rem;color:var(--ink-faint);">(optional)</span></label><input class="form-input" type="text" id="courses-cta-label" placeholder="e.g. Register now"></div>
+      <div class="form-group"><label class="form-label">CTA Button Link</label><input class="form-input" type="text" id="courses-cta-link" placeholder="https://…"></div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <button class="form-submit" id="courses-save-btn">Save Courses Page</button>
+        <span class="form-msg success" id="courses-success">Saved.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-top"><button class="lightbox-close" id="lightbox-close">Close ✕</button></div>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <div class="lightbox-bottom">
+    <button class="lightbox-nav" id="lightbox-prev">← Prev</button>
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+    <button class="lightbox-nav" id="lightbox-next">Next →</button>
+  </div>
+</div>
+
+<script>
+var ADMIN_PASSWORD = 'wuwei2024';
+var BIN_ID = '69a47c34d0ea881f40e52b2f';
+var MASTER_KEY = '$2a$10$nayge7gUGGoX8zfErKHfHOaa1C/B4NsPZ5eXw6ndLt50cLCQnwsCC';
+
+var works = [], readings = [], videos = [];
+var coursesData = { text:'', ctaLabel:'', ctaLink:'' };
+var activeFilter = 'all';
+
+// ── DATA ──
+function loadData() {
+  document.getElementById('works-grid').innerHTML = '<div class="loading-state">Loading archive…</div>';
+  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', { headers:{ 'X-Master-Key': MASTER_KEY } })
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      var rec = data.record;
+      if (rec && rec.works) {
+        works = Array.isArray(rec.works) ? rec.works : [];
+        readings = Array.isArray(rec.readings) ? rec.readings : [];
+        videos = Array.isArray(rec.videos) ? rec.videos : [];
+        coursesData = rec.courses || { text:'', ctaLabel:'', ctaLink:'' };
+      } else if (Array.isArray(rec)) {
+        works = rec;
+      }
+      works = works.filter(function(w){ return w && w.title && w.title !== 'undefined'; });
+      render(); renderReadings(); renderVideos(); renderCourses();
+    })
+    .catch(function(){ document.getElementById('works-grid').innerHTML = '<div class="empty-state">Could not load archive.</div>'; });
+}
+
+function saveData(cb) {
+  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
+    method:'PUT',
+    headers:{ 'Content-Type':'application/json', 'X-Master-Key': MASTER_KEY },
+    body: JSON.stringify({ works:works, readings:readings, videos:videos, courses:coursesData })
+  }).then(function(r){ return r.json(); }).then(function(){ if(cb) cb(true); }).catch(function(){ if(cb) cb(false); });
+}
+
+// ── HELPERS ──
+function pad(n){ return n<10?'0'+n:''+n; }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function ytId(url) {
+  var m = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function dropboxDownload(url) {
+  return url.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','').replace('?dl=1','');
+}
+
+// ── RENDER WORKS ──
+function render() {
+  var grid = document.getElementById('works-grid');
+  var filtered = activeFilter === 'all' ? works : works.filter(function(w){ return w.status === activeFilter; });
+  document.getElementById('work-count').textContent = works.length + ' work' + (works.length!==1?'s':'');
+  if (!filtered.length) { grid.innerHTML = '<div class="empty-state">' + (works.length===0?'No works recorded yet.':'No works match this filter.') + '</div>'; return; }
+
+  grid.innerHTML = filtered.map(function(w,i) {
+    var imgHtml = w.image ? '<img src="'+esc(w.image)+'" alt="'+esc(w.title)+'" loading="lazy">' : '<div class="no-image-placeholder"><span>No Image</span></div>';
+    var details = (w.year?esc(w.year)+'<br>':'') + (w.material?esc(w.material)+'<br>':'') + (w.dimensions?esc(w.dimensions):'');
+    var status = w.status || 'Available';
+    var extras = [w.image2,w.image3,w.image4].filter(Boolean);
+    var gallery = extras.length ? '<div class="expanded-gallery">'+extras.map(function(u,gi){ return '<img src="'+esc(u)+'" alt="view '+(gi+2)+'" loading="lazy" data-gi="'+gi+'">'; }).join('')+'</div>' : '';
+    return '<article class="plate" data-id="'+esc(w.id)+'">' +
+      '<div class="plate-image-wrap"><span class="plate-no">Pl. '+pad(i+1)+'</span>'+imgHtml+'</div>' +
+      '<div class="plate-meta"><h2 class="plate-title">'+esc(w.title)+'</h2><div class="plate-details">'+details+'</div><span class="plate-status status-'+status.toLowerCase()+'">'+esc(status)+'</span></div>' +
+      '<div class="plate-expanded-info"><div class="expanded-inner">'+gallery+(w.description?'<p class="expanded-desc">'+esc(w.description)+'</p>':'')+(w.price?'<div class="expanded-price">'+esc(w.price)+'</div>':'')+'<div class="expanded-inquiry"><a href="https://www.instagram.com/wuweito/" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;">Inquiries via Instagram DM.</a></div></div></div>' +
+    '</article>';
+  }).join('');
+
+  grid.querySelectorAll('.plate').forEach(function(el) {
+    var wid = el.getAttribute('data-id');
+    var work = works.find(function(w){ return w.id===wid; });
+    el.addEventListener('click', function(e) {
+      if (e.target.closest('.expanded-gallery') || e.target.tagName==='A') return;
+      var isOpen = el.classList.contains('expanded');
+      grid.querySelectorAll('.plate.expanded').forEach(function(p){ p.classList.remove('expanded'); });
+      if (!isOpen) el.classList.add('expanded');
+    });
+    el.querySelectorAll('.expanded-gallery img').forEach(function(img) {
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!work) return;
+        var extras = [work.image2,work.image3,work.image4].filter(Boolean);
+        openLightbox(extras, parseInt(img.getAttribute('data-gi'))||0);
+      });
+    });
+  });
+}
+
+// ── RENDER READINGS ──
+function renderReadings() {
+  var grid = document.getElementById('readings-grid');
+  if (!readings.length) { grid.innerHTML = '<p style="font-family:\'Courier Prime\',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;grid-column:1/-1;">No readings added yet.</p>'; return; }
+  grid.innerHTML = readings.map(function(r) {
+    var coverHtml = r.cover ? '<img src="'+esc(r.cover)+'" alt="'+esc(r.title)+'" loading="lazy">' : '<div class="reading-no-cover"><span>No Cover</span></div>';
+    var dlUrl = r.pdf ? dropboxDownload(r.pdf) : '#';
+    return '<div class="reading-card">' +
+      '<div class="reading-cover">'+coverHtml+'</div>' +
+      '<div class="reading-title">'+esc(r.title)+'</div>' +
+      (r.author ? '<div class="reading-author">'+esc(r.author)+'</div>' : '') +
+      (r.pdf ? '<a class="reading-download" href="'+esc(dlUrl)+'" target="_blank" download>Download PDF</a>' : '') +
+    '</div>';
+  }).join('');
+}
+
+// ── RENDER VIDEOS ──
+function renderVideos() {
+  var grid = document.getElementById('spoken-grid');
+  if (!videos.length) { grid.innerHTML = '<p style="font-family:\'Courier Prime\',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;grid-column:1/-1;">No videos added yet.</p>'; return; }
+  grid.innerHTML = videos.map(function(v) {
+    var vid = ytId(v.url);
+    if (!vid) return '';
+    var thumb = 'https://img.youtube.com/vi/'+vid+'/hqdefault.jpg';
+    var embedSrc = 'https://www.youtube.com/embed/'+vid+'?autoplay=1';
+    return '<div class="video-card">' +
+      '<div class="video-thumb" data-embed="'+esc(embedSrc)+'">' +
+        '<img src="'+esc(thumb)+'" alt="'+esc(v.title||'Video')+'" loading="lazy">' +
+        '<div class="video-play"><div class="video-play-btn"><div class="video-play-icon"></div></div></div>' +
+      '</div>' +
+      '<div class="video-embed" id="embed-'+esc(vid)+'"><iframe src="" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>' +
+      '<div class="video-title">'+esc(v.title||'')+'</div>' +
+    '</div>';
+  }).join('');
+
+  grid.querySelectorAll('.video-thumb').forEach(function(thumb) {
+    thumb.addEventListener('click', function() {
+      var embedSrc = thumb.getAttribute('data-embed');
+      var embedBox = thumb.nextElementSibling;
+      var iframe = embedBox.querySelector('iframe');
+      thumb.style.display = 'none';
+      embedBox.style.display = 'block';
+      iframe.src = embedSrc;
+    });
+  });
+}
+
+// ── RENDER COURSES ──
+function renderCourses() {
+  var el = document.getElementById('courses-content-display');
+  if (!coursesData.text) { el.innerHTML = '<p style="font-family:\'Courier Prime\',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;">No courses announced yet.</p>'; return; }
+  var html = '<p class="courses-body">'+esc(coursesData.text)+'</p>';
+  if (coursesData.ctaLabel && coursesData.ctaLink) html += '<div><a class="courses-cta-btn" href="'+esc(coursesData.ctaLink)+'" target="_blank">'+esc(coursesData.ctaLabel)+'</a></div>';
+  el.innerHTML = html;
+}
+
+// ── NAV ──
+document.querySelectorAll('.nav-filter li').forEach(function(li) {
+  li.addEventListener('click', function() {
+    document.querySelectorAll('.nav-filter li').forEach(function(l){ l.classList.remove('active'); });
+    li.classList.add('active');
+    var page = li.getAttribute('data-page');
+    var filter = li.getAttribute('data-filter') || 'all';
+    document.getElementById('works-grid').style.display = 'none';
+    ['inquire','courses','readings','spoken'].forEach(function(p){ document.getElementById('page-'+p).classList.remove('open'); });
+    if (page === 'archive') { activeFilter = filter; document.getElementById('works-grid').style.display = ''; render(); }
+    else { document.getElementById('page-'+page).classList.add('open'); }
+  });
+});
+
+// ── WORKS FORM ──
+var editingWorkId = null;
+document.getElementById('add-work-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var err = document.getElementById('form-error'), suc = document.getElementById('form-success'), btn = document.getElementById('form-submit-btn');
+  var title = document.getElementById('f-title').value.trim();
+  err.classList.remove('visible'); suc.classList.remove('visible');
+  if (!title) { err.textContent='Title is required'; err.classList.add('visible'); return; }
+  var work = { id: editingWorkId||Date.now().toString(), title:title, year:document.getElementById('f-year').value.trim(), material:document.getElementById('f-material').value.trim(), dimensions:document.getElementById('f-dimensions').value.trim(), description:document.getElementById('f-description').value.trim(), price:document.getElementById('f-price').value.trim(), status:document.getElementById('f-status').value, image:document.getElementById('f-image-url').value.trim(), image2:document.getElementById('f-image-2').value.trim(), image3:document.getElementById('f-image-3').value.trim(), image4:document.getElementById('f-image-4').value.trim() };
+  btn.disabled=true; btn.textContent='Saving…';
+  if (editingWorkId) { var idx=works.findIndex(function(w){ return w.id===editingWorkId; }); if(idx!==-1) works[idx]=work; }
+  else { works.unshift(work); }
+  saveData(function(ok) {
+    btn.disabled=false; btn.textContent=editingWorkId?'Save Changes':'Add to Archive';
+    if (ok) { render(); renderAdminWorks(); resetWorkForm(); suc.classList.add('visible'); setTimeout(function(){ suc.classList.remove('visible'); },2500); }
+    else { if(!editingWorkId) works.shift(); err.textContent='Connection error.'; err.classList.add('visible'); }
+  });
+});
+
+function resetWorkForm() {
+  document.getElementById('add-work-form').reset(); editingWorkId=null;
+  document.getElementById('form-mode-label').textContent='Adding new work';
+  document.getElementById('form-submit-btn').textContent='Add to Archive';
+  document.getElementById('form-cancel-edit').style.display='none';
+}
+document.getElementById('form-cancel-edit').addEventListener('click', resetWorkForm);
+
+function editWork(work) {
+  editingWorkId=work.id;
+  document.getElementById('form-mode-label').textContent='Editing: '+work.title;
+  document.getElementById('form-submit-btn').textContent='Save Changes';
+  document.getElementById('form-cancel-edit').style.display='inline-block';
+  document.getElementById('f-image-url').value=work.image||'';
+  document.getElementById('f-image-2').value=work.image2||'';
+  document.getElementById('f-image-3').value=work.image3||'';
+  document.getElementById('f-image-4').value=work.image4||'';
+  document.getElementById('f-title').value=work.title||'';
+  document.getElementById('f-year').value=work.year||'';
+  document.getElementById('f-material').value=work.material||'';
+  document.getElementById('f-dimensions').value=work.dimensions||'';
+  document.getElementById('f-description').value=work.description||'';
+  document.getElementById('f-price').value=work.price||'';
+  document.getElementById('f-status').value=work.status||'Available';
+  document.getElementById('admin-overlay').scrollTop=0;
+}
+
+function renderAdminWorks() {
+  var list = document.getElementById('admin-works-list');
+  if (!works.length) { list.innerHTML='<div style="font-family:\'Courier Prime\',monospace;font-size:0.6rem;color:var(--ink-faint);padding:16px 0;">Archive is empty.</div>'; return; }
+  list.innerHTML = works.map(function(w) {
+    return '<div class="admin-item"><span class="admin-item-name">'+esc(w.title)+(w.year?' <span style="font-style:normal;font-family:\'Courier Prime\',monospace;font-size:0.58rem;color:var(--ink-faint);">'+esc(w.year)+'</span>':'')+'</span><div class="admin-item-actions"><button class="admin-item-edit" data-id="'+esc(w.id)+'">Edit</button><button class="admin-item-remove" data-id="'+esc(w.id)+'">Remove</button></div></div>';
+  }).join('');
+  list.querySelectorAll('.admin-item-edit').forEach(function(btn){ btn.addEventListener('click', function(){ var w=works.find(function(x){ return x.id===btn.getAttribute('data-id'); }); if(w) editWork(w); }); });
+  list.querySelectorAll('.admin-item-remove').forEach(function(btn){ btn.addEventListener('click', function(){ var id=btn.getAttribute('data-id'); btn.textContent='…'; btn.disabled=true; works=works.filter(function(w){ return w.id!==id; }); saveData(function(ok){ if(ok){ render(); renderAdminWorks(); } else { btn.textContent='Remove'; btn.disabled=false; } }); }); });
+}
+
+// ── READINGS FORM ──
+var editingReadingId = null;
+document.getElementById('add-reading-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var err=document.getElementById('reading-error'), suc=document.getElementById('reading-success'), btn=document.getElementById('reading-submit-btn');
+  var title=document.getElementById('r-title').value.trim();
+  err.classList.remove('visible'); suc.classList.remove('visible');
+  if (!title) { err.textContent='Title is required'; err.classList.add('visible'); return; }
+  var reading = { id:editingReadingId||Date.now().toString(), title:title, author:document.getElementById('r-author').value.trim(), cover:document.getElementById('r-cover').value.trim(), pdf:document.getElementById('r-pdf').value.trim() };
+  btn.disabled=true; btn.textContent='Saving…';
+  if (editingReadingId) { var idx=readings.findIndex(function(r){ return r.id===editingReadingId; }); if(idx!==-1) readings[idx]=reading; }
+  else { readings.unshift(reading); }
+  saveData(function(ok) {
+    btn.disabled=false; btn.textContent=editingReadingId?'Save Changes':'Add Reading';
+    if (ok) { renderReadings(); renderAdminReadings(); resetReadingForm(); suc.classList.add('visible'); setTimeout(function(){ suc.classList.remove('visible'); },2500); }
+    else { if(!editingReadingId) readings.shift(); err.textContent='Connection error.'; err.classList.add('visible'); }
+  });
+});
+
+function resetReadingForm() {
+  document.getElementById('add-reading-form').reset(); editingReadingId=null;
+  document.getElementById('reading-mode-label').textContent='Adding new reading';
+  document.getElementById('reading-submit-btn').textContent='Add Reading';
+  document.getElementById('reading-cancel-edit').style.display='none';
+}
+document.getElementById('reading-cancel-edit').addEventListener('click', resetReadingForm);
+
+function renderAdminReadings() {
+  var list=document.getElementById('admin-readings-list');
+  if (!readings.length) { list.innerHTML='<div style="font-family:\'Courier Prime\',monospace;font-size:0.6rem;color:var(--ink-faint);padding:16px 0;">No readings added yet.</div>'; return; }
+  list.innerHTML=readings.map(function(r){ return '<div class="admin-item"><span class="admin-item-name">'+esc(r.title)+(r.author?' — <span style="font-style:normal;font-size:0.82rem;">'+esc(r.author)+'</span>':'')+'</span><div class="admin-item-actions"><button class="admin-item-edit" data-id="'+esc(r.id)+'">Edit</button><button class="admin-item-remove" data-id="'+esc(r.id)+'">Remove</button></div></div>'; }).join('');
+  list.querySelectorAll('.admin-item-edit').forEach(function(btn){ btn.addEventListener('click', function(){ var r=readings.find(function(x){ return x.id===btn.getAttribute('data-id'); }); if(r){ editingReadingId=r.id; document.getElementById('reading-mode-label').textContent='Editing: '+r.title; document.getElementById('reading-submit-btn').textContent='Save Changes'; document.getElementById('reading-cancel-edit').style.display='inline-block'; document.getElementById('r-cover').value=r.cover||''; document.getElementById('r-title').value=r.title||''; document.getElementById('r-author').value=r.author||''; document.getElementById('r-pdf').value=r.pdf||''; document.getElementById('admin-overlay').scrollTop=0; } }); });
+  list.querySelectorAll('.admin-item-remove').forEach(function(btn){ btn.addEventListener('click', function(){ var id=btn.getAttribute('data-id'); btn.textContent='…'; btn.disabled=true; readings=readings.filter(function(r){ return r.id!==id; }); saveData(function(ok){ if(ok){ renderReadings(); renderAdminReadings(); } else { btn.textContent='Remove'; btn.disabled=false; } }); }); });
+}
+
+// ── VIDEOS FORM ──
+var editingVideoId = null;
+document.getElementById('add-video-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var err=document.getElementById('video-error'), suc=document.getElementById('video-success'), btn=document.getElementById('video-submit-btn');
+  var url=document.getElementById('v-url').value.trim();
+  err.classList.remove('visible'); suc.classList.remove('visible');
+  if (!url || !ytId(url)) { err.textContent='Valid YouTube URL required'; err.classList.add('visible'); return; }
+  var video = { id:editingVideoId||Date.now().toString(), url:url, title:document.getElementById('v-title').value.trim() };
+  btn.disabled=true; btn.textContent='Saving…';
+  if (editingVideoId) { var idx=videos.findIndex(function(v){ return v.id===editingVideoId; }); if(idx!==-1) videos[idx]=video; }
+  else { videos.unshift(video); }
+  saveData(function(ok) {
+    btn.disabled=false; btn.textContent=editingVideoId?'Save Changes':'Add Video';
+    if (ok) { renderVideos(); renderAdminVideos(); resetVideoForm(); suc.classList.add('visible'); setTimeout(function(){ suc.classList.remove('visible'); },2500); }
+    else { if(!editingVideoId) videos.shift(); err.textContent='Connection error.'; err.classList.add('visible'); }
+  });
+});
+
+function resetVideoForm() {
+  document.getElementById('add-video-form').reset(); editingVideoId=null;
+  document.getElementById('video-mode-label').textContent='Adding new video';
+  document.getElementById('video-submit-btn').textContent='Add Video';
+  document.getElementById('video-cancel-edit').style.display='none';
+}
+document.getElementById('video-cancel-edit').addEventListener('click', resetVideoForm);
+
+function renderAdminVideos() {
+  var list=document.getElementById('admin-videos-list');
+  if (!videos.length) { list.innerHTML='<div style="font-family:\'Courier Prime\',monospace;font-size:0.6rem;color:var(--ink-faint);padding:16px 0;">No videos added yet.</div>'; return; }
+  list.innerHTML=videos.map(function(v){ return '<div class="admin-item"><span class="admin-item-name">'+(v.title?esc(v.title):esc(v.url))+'</span><div class="admin-item-actions"><button class="admin-item-edit" data-id="'+esc(v.id)+'">Edit</button><button class="admin-item-remove" data-id="'+esc(v.id)+'">Remove</button></div></div>'; }).join('');
+  list.querySelectorAll('.admin-item-edit').forEach(function(btn){ btn.addEventListener('click', function(){ var v=videos.find(function(x){ return x.id===btn.getAttribute('data-id'); }); if(v){ editingVideoId=v.id; document.getElementById('video-mode-label').textContent='Editing video'; document.getElementById('video-submit-btn').textContent='Save Changes'; document.getElementById('video-cancel-edit').style.display='inline-block'; document.getElementById('v-url').value=v.url||''; document.getElementById('v-title').value=v.title||''; document.getElementById('admin-overlay').scrollTop=0; } }); });
+  list.querySelectorAll('.admin-item-remove').forEach(function(btn){ btn.addEventListener('click', function(){ var id=btn.getAttribute('data-id'); btn.textContent='…'; btn.disabled=true; videos=videos.filter(function(v){ return v.id!==id; }); saveData(function(ok){ if(ok){ renderVideos(); renderAdminVideos(); } else { btn.textContent='Remove'; btn.disabled=false; } }); }); });
+}
+
+// ── COURSES ──
+document.getElementById('courses-save-btn').addEventListener('click', function() {
+  var btn=this;
+  coursesData={ text:document.getElementById('courses-text').value.trim(), ctaLabel:document.getElementById('courses-cta-label').value.trim(), ctaLink:document.getElementById('courses-cta-link').value.trim() };
+  btn.disabled=true; btn.textContent='Saving…';
+  saveData(function(ok){ btn.disabled=false; btn.textContent='Save Courses Page'; if(ok){ renderCourses(); var s=document.getElementById('courses-success'); s.classList.add('visible'); setTimeout(function(){ s.classList.remove('visible'); },2500); } });
+});
+
+// ── ADMIN TABS ──
+document.querySelectorAll('.admin-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.admin-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.admin-tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    tab.classList.add('active');
+    document.getElementById('tab-'+tab.getAttribute('data-tab')).classList.add('active');
+    if (tab.getAttribute('data-tab')==='courses') { document.getElementById('courses-text').value=coursesData.text||''; document.getElementById('courses-cta-label').value=coursesData.ctaLabel||''; document.getElementById('courses-cta-link').value=coursesData.ctaLink||''; }
+    if (tab.getAttribute('data-tab')==='works') renderAdminWorks();
+    if (tab.getAttribute('data-tab')==='readings') renderAdminReadings();
+    if (tab.getAttribute('data-tab')==='spoken') renderAdminVideos();
+  });
+});
+
+// ── PASSWORD ──
+document.getElementById('admin-toggle').addEventListener('click', function(){ document.getElementById('password-overlay').classList.add('open'); document.getElementById('password-input').value=''; document.getElementById('password-error').classList.remove('visible'); setTimeout(function(){ document.getElementById('password-input').focus(); },100); });
+document.getElementById('password-input').addEventListener('keydown', function(e){ if(e.key==='Enter') checkPassword(); });
+document.getElementById('password-cancel').addEventListener('click', function(){ document.getElementById('password-overlay').classList.remove('open'); });
+function checkPassword() {
+  if (document.getElementById('password-input').value===ADMIN_PASSWORD) {
+    document.getElementById('password-overlay').classList.remove('open');
+    document.getElementById('admin-overlay').classList.add('open');
+    renderAdminWorks();
+  } else { document.getElementById('password-error').classList.add('visible'); document.getElementById('password-input').value=''; document.getElementById('password-input').focus(); }
+}
+document.getElementById('admin-close').addEventListener('click', function(){ document.getElementById('admin-overlay').classList.remove('open'); resetWorkForm(); });
+
+// ── LIGHTBOX ──
+var lbImages=[], lbIndex=0;
+function openLightbox(images,start){ lbImages=images; lbIndex=start; showLbImage(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; var m=lbImages.length>1; document.getElementById('lightbox-prev').style.visibility=m?'visible':'hidden'; document.getElementById('lightbox-next').style.visibility=m?'visible':'hidden'; document.getElementById('lightbox-counter').style.display=m?'':'none'; }
+function showLbImage(){ document.getElementById('lightbox-img').src=lbImages[lbIndex]; document.getElementById('lightbox-counter').textContent=(lbIndex+1)+' / '+lbImages.length; }
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightbox-img').src=''; document.body.style.overflow=''; }
+document.getElementById('lightbox-close').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+document.getElementById('lightbox').addEventListener('click', function(e){ if(e.target===this) closeLightbox(); });
+document.getElementById('lightbox-prev').addEventListener('click', function(e){ e.stopPropagation(); lbIndex=(lbIndex-1+lbImages.length)%lbImages.length; showLbImage(); });
+document.getElementById('lightbox-next').addEventListener('click', function(e){ e.stopPropagation(); lbIndex=(lbIndex+1)%lbImages.length; showLbImage(); });
+document.addEventListener('keydown', function(e){ if(!document.getElementById('lightbox').classList.contains('open')) return; if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowLeft') document.getElementById('lightbox-prev').click(); if(e.key==='ArrowRight') document.getElementById('lightbox-next').click(); });
+var lbTouchX=0;
+document.getElementById('lightbox').addEventListener('touchstart',function(e){ lbTouchX=e.touches[0].clientX; },{passive:true});
+document.getElementById('lightbox').addEventListener('touchend',function(e){ var diff=lbTouchX-e.changedTouches[0].clientX; if(Math.abs(diff)>50){ if(diff>0) document.getElementById('lightbox-next').click(); else document.getElementById('lightbox-prev').click(); } },{passive:true});
+
+loadData();
+</script>
+</body>
+</html>
