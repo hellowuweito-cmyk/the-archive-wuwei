@@ -1,0 +1,362 @@
+{
+  "works": [
+    {
+      "id": "1772565902425",
+      "title": "KIN NO KISEKI",
+      "year": "2024",
+      "material": "Stoneware - Gold",
+      "dimensions": "H 6 cm x D 11 cm",
+      "description": "This chawan was damaged during transportation, breaking into three pieces. It remained with me, waiting until I was ready to restore it after completing my kintsugi apprenticeship. Repaired using traditional kintsugi with real gold, its fractures now trace a renewed path, honoring both its breakage and its return to wholeness.",
+      "price": "Price on request",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563056/Artboard_38_f3h9wg.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563056/Artboard_49_td9xej.jpg",
+      "image3": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563042/Artboard_31_ugk3py.jpg",
+      "image4": ""
+    },
+    {
+      "id": "1772565277666",
+      "title": "SHĀN YǏN JAR",
+      "year": "2023",
+      "material": "Stoneware - Foraged Pebble from Costa Brava - Glaze made with wood ashes and soil from Kumano Kodo Japan",
+      "dimensions": "H 10,5 cm x D 9,2 cm",
+      "description": "This jar is suitable for burning incense or for storing tea during ceremony. The pebble on the lid comes from my personal collection, gathered during travels and walks in nature. It is finished with a custom glaze made with ashes and soil collected during my pilgrimage along the Kumano Kodo in Japan.",
+      "price": "70 euro",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563042/Artboard_35_rckfa1.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563069/Artboard_40_dpg4ub.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772564755173",
+      "title": "LIÁNG YǑU TEA CUPS",
+      "year": "2025",
+      "material": "Stoneware - Custom glaze",
+      "dimensions": "H 6,7 cm x D 6,5 cm",
+      "description": "These two tea cups carry the quiet energy that arises when sharing time with a friend who dissolves the illusion of separation. Named **“Good Friends,”** they embody companionship, presence, and the simple depth revealed through shared tea.\n\"Through Tea, make friends\".",
+      "price": "65 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563049/Artboard_45_mvkmk2.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563075/Artboard_46_xbfyww.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772564316713",
+      "title": "GǓ YÁN",
+      "year": "2025",
+      "material": "Stoneware - Custom Glaze",
+      "dimensions": "H 7 cm x D 8,5 cm Gaiwan   D 10,5 cm Plate",
+      "description": "This Collector's gaiwan is finished with an experimental glaze inspired by the idea of an earthy, dry surface — textured, mineral, and grounded in natural tones. The interior remains unglazed, allowing the clay to absorb and retain the subtle memory of each infusion over time. Particularly suited for Pu’er gong fu sessions, it deepens in character with use, becoming more personal with every brew.",
+      "price": "90 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563068/Artboard_36_lu9ntc.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563074/Artboard_37_fqriny.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772563265330",
+      "title": "XUÁN HUĪ",
+      "year": "2023",
+      "material": "Stoneware - Ash Glaze and Rocks from Costa Brava",
+      "dimensions": "H 4,5 cm x H 11 cm",
+      "description": "",
+      "price": "80 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563076/Artboard_39_xn3rxl.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772563074/Artboard_32_pbdcer.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772559128069",
+      "title": "KŌHAKU",
+      "year": "2022",
+      "material": "Stoneware - Gold",
+      "dimensions": "H 5 cm x D 7 cm",
+      "description": "This small tea cup was made in 2022 in Cadaqués and damaged before firing. I chose to fire and keep it as part of my practice. In 2025, after completing training in traditional kintsugi, it was restored with real gold. The repair honors its history, uniting its original making with its later transformation.",
+      "price": "Price on request",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459900/Artboard_4_ljxbbf.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459756/Artboard_5_zp3fmu.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772482799598",
+      "title": "GIN NO KIZUNA",
+      "year": "2026",
+      "material": "Earthenware - Silver",
+      "dimensions": "H 9 cm x D 7,2 cm",
+      "description": "Gin no Kizuna is a yunomi restored through gintsugi (銀継ぎ), repaired with real silver. Once heavily damaged, it required multiple careful stages of reconstruction, making it the most complex restoration I have completed so far. Each fracture was patiently rejoined, transforming breakage into quiet strength. Now perfectly functional, fully food safe, and ready to hold tea again, it carries both its history and its renewal within the silver lines.",
+      "price": "320 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459893/Artboard_2_brdrg9.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481072/Artboard_3_pznooq.jpg",
+      "image3": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459753/Artboard_1_gmpcas.jpg",
+      "image4": ""
+    },
+    {
+      "id": "1772482256342",
+      "title": "GǓ YÁN",
+      "year": "2025",
+      "material": "Stoneware - Custom glaze made with wild clay and rocks gathered at Kumano Kodo's Pilgrimage in Japan",
+      "dimensions": "",
+      "description": "This collector’s gaiwan is a once-in-a-lifetime piece, shaped through focused refinement and quiet repetition. It is glazed with wild clay and stones gathered while walking the Kumano Kodo, allowing the landscape itself to become part of the surface. Fire, place, and material converge in a singular, unrepeatable result.",
+      "price": "",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459896/Artboard_27_ctxuhv.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481090/Artboard_28_bwign2.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772481819433",
+      "title": "SHĀN YǏN",
+      "year": "2024",
+      "material": "Stoneware - Ash Glaze - Foraged stone from Costa Brava",
+      "dimensions": "",
+      "description": "",
+      "price": "120 euro",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481076/Artboard_29_nekjcd.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481086/Artboard_21_by75g0.jpg",
+      "image3": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459881/Artboard_24_fobbmn.jpg",
+      "image4": ""
+    },
+    {
+      "id": "1772481433686",
+      "title": "GONGDAO BEI",
+      "year": "2025",
+      "material": "Stoneware - Experimental custom glaze",
+      "dimensions": "H 9 cm x D 8,7 cm",
+      "description": "",
+      "price": "",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481089/Artboard_6_xxa0yn.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481088/Artboard_7_finexg.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772481251152",
+      "title": "KAMIGOKORO",
+      "year": "2025",
+      "material": "Stoneware - Experimental custom white glaze",
+      "dimensions": "H 6,5 cm x D 10,5 cm",
+      "description": "Kamigokoro is a tea cup that may also be used as a chawan, glazed with an experimental, once-in-a-lifetime surface that can never be repeated. It carries a quiet sense of devotion and stillness — a simple vessel of presence, consecrated to the Great Spirit.",
+      "price": "85 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459756/Artboard_10_qeusct.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481082/Artboard_16_czhveh.jpg",
+      "image3": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772481091/Artboard_17_uy8ptx.jpg",
+      "image4": ""
+    },
+    {
+      "id": "1772480193140",
+      "title": "HAIKAGE",
+      "year": "2023",
+      "material": "Stoneware - Ash Glaze",
+      "dimensions": "H 5,5 cm x D 8,5 cm",
+      "description": "This experimental tea cup was created during a year devoted entirely to single-fired ash glaze — a focused and unrepeatable period of exploration. The ash moved unpredictably in the kiln, forming textures and tones that could never be planned or replicated. Shaped by fire, chance, and material truth, this piece stands as a singular moment — a once-in-a-lifetime surface born from surrender to the process.",
+      "price": "60 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459863/Artboard_18_o0pnw9.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459876/Artboard_19_xlpufd.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772477930087",
+      "title": "SHIOSABI",
+      "year": "2022",
+      "material": "Stoneware - Ash Glaze + Stones from Costa Brava",
+      "dimensions": "H 4 cm x D 10,4 cm",
+      "description": "This piece was created as an experiment using local natural materials from the Costa Brava. Inspired by iron surfaces shaped by years of sun and salt water, I worked with wood ash and crushed coastal rocks, allowing them to react naturally in the kiln. Rather than imitating weathered textures, the goal was to let the raw materials form their own surface — compressing time and elemental forces into a single firing. One in a lifetime.",
+      "price": "60 euro",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459854/Artboard_11_hdi9im.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459751/Artboard_15_l2s5oe.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772477757241",
+      "title": "KASUMI",
+      "year": "2022",
+      "material": "",
+      "dimensions": "H 6,3 cm x D 9 cm",
+      "description": "",
+      "price": "",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459862/Artboard_8_zxwzem.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459897/Artboard_9_zwhzvm.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772475464638",
+      "title": "YUKI",
+      "year": "2025",
+      "material": "Stoneware",
+      "dimensions": "H 6,7 cm x D 8,3 cm",
+      "description": "",
+      "price": "",
+      "status": "Sold",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459867/Artboard_12_orierb.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459847/Artboard_13_xtyb4q.jpg",
+      "image3": "",
+      "image4": ""
+    },
+    {
+      "id": "1772475365455",
+      "title": "KOKEIRO",
+      "year": "2025",
+      "material": "Stoneware",
+      "dimensions": "H 6,7 cm x D 7 cm",
+      "description": "Kokeiro is a simple, everyday tea cup. Ultra lightweight in the hand, it feels effortless to hold, inviting unhurried sips and calm reflection. Two layered glazes flow gently over the clay body, merging into a soft, moss-like green with earthy undertones.",
+      "price": "30 euro",
+      "status": "Available",
+      "image": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459889/Artboard_25_uuiaqa.jpg",
+      "image2": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459851/Artboard_30_qt4yn7.jpg",
+      "image3": "https://res.cloudinary.com/dgeccazjt/image/upload/v1772459880/Artboard_26_hzallv.jpg",
+      "image4": ""
+    }
+  ],
+  "readings": [
+    {
+      "id": "1777861735732",
+      "title": "The Book of Tea",
+      "author": "Okakura Kakuzō",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777862214/Screenshot_2026-05-03_at_21.28.04_eryxsl.png",
+      "pdf": "https://www.dropbox.com/scl/fi/095o1itgbgn3ctl33ti8k/The-Book-of-Tea-Josh-Verbae-Libreka-GmbH-Montefranco-2014-The-Big-Nest-isbn13-9781910660300-7181abafbf872a88d810bd4503d58b24-Anna-s-Archive.epub?rlkey=5rcw8nz05wr3ue9w9ydfl4dyy&st=pm1jigjt&dl=0"
+    },
+    {
+      "id": "1777849081220",
+      "title": "Wind in the Pines: Classic Writings of the Way of Tea as a Buddhist Path",
+      "author": "Dennis Hirota",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849583/Screenshot_2026-05-03_at_17.57.44_rsfmka.png",
+      "pdf": "https://www.dropbox.com/scl/fi/xxh7atcedgtopdaw9h6l2/Wind-in-the-pines-_-classic-writings-of-the-way-of-tea-as-a-translated-by-Louis-de-La-Vall-e-Poussin-English-Berkeley-Calif-California-isbn13-9780875730738-0fa5768437d5607e210193a8ab278732-Anna-s-Archive.pdf?rlkey=uxjd4okehnh8nkw901cg6zttw&st=bhln5kd2&dl=0"
+    },
+    {
+      "id": "1777848970170",
+      "title": "The Yellow Emperor's Classic of Medicine",
+      "author": "Ni Maoshing",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849473/Screenshot_2026-05-03_at_17.55.56_kkidqb.png",
+      "pdf": "https://www.dropbox.com/scl/fi/igy1p8v5zqpcungb63r5m/The-Yellow-Emperor-s-Classic-of-Medicine_-A-New-Translation-Maoshing-Ni-2012-25e0508b8b749fb8e644855582b7aa40-Anna-s-Archive.pdf?rlkey=7j2bzxodziw0b6m8qssqlsf41&st=h3596avc&dl=0"
+    },
+    {
+      "id": "1777848851674",
+      "title": "The Wisdom of Tea: Life Lessons from the Japanese Tea Ceremony",
+      "author": "Noriko Morishita",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849354/Screenshot_2026-05-03_at_17.53.58_okxkic.png",
+      "pdf": "https://www.dropbox.com/scl/fi/a1ne5v1l7pvohvyfn6v3n/The-wisdom-of-tea-_-life-lessons-from-the-Japanese-tea-Noriko-Morishita-Eleanor-Goldsmith-Translator-1-2020-Allen-Unwin-isbn13-9781741758146-fdb3228bf382426c77b62ee47d48716a-Anna-s-Archive.pdf?rlkey=6w3ml0vivei3wfcqvbsucizim&st=jtxzhtrr&dl=0"
+    },
+    {
+      "id": "1777848759758",
+      "title": "The Essential Book of Traditional Chinese Medicine, Vol. 1",
+      "author": "Yanchi Liu",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849262/Screenshot_2026-05-03_at_17.52.26_flw1ls.png",
+      "pdf": "https://www.dropbox.com/scl/fi/6etvedmrmsdk28fhq5nrl/The-Essential-Book-of-Traditional-Chinese-Medicine-Vol_-1_-Liu-Yanchi-Vian-Kathleen-Eckman-Peter-New-York-New-York-State-1995-New-isbn13-9780231061964-c92730d858444528ebc2142e438f6096-Anna-s-Archive.pdf?rlkey=7ggvt3iiwa589m5r2crenb7pa&st=hgrv1ai9&dl=0"
+    },
+    {
+      "id": "1777848636710",
+      "title": "The Classic of Tea: Origins and rituals",
+      "author": "Lu Yu",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849129/Screenshot_2026-05-03_at_17.50.12_qtii3r.png",
+      "pdf": "https://www.dropbox.com/scl/fi/ociwtovyufpvn67l98pg9/The-Classic-of-Tea-Lu-Yu-1995-Ecco-Pr-cb9528109402d0248f085eecb67ee9ac-Anna-s-Archive.pdf?rlkey=9a89ol897oy6qsy7rcv89of6g&st=ludcu7x1&dl=0"
+    },
+    {
+      "id": "1777848526911",
+      "title": "The Art of the Yixing Potter",
+      "author": "Christina; Et. Al. Lo, K. S. ; Chu",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777849028/Screenshot_2026-05-03_at_17.48.32_ja0v0r.png",
+      "pdf": "https://www.dropbox.com/scl/fi/3x9qcicha3isazvp61bgn/The-art-of-the-Yixing-potter_-the-K_S_-Lo-collection-management-co-ordination-and-editorial_-Anita-Wong-Rose-Lee-Hong-Kong-Hong-Kong-1990-isbn13-9789622150966-54c6493a638c9346bfe58fd12a90ffde-Anna-s-Archive.pdf?rlkey=f482wq865e9i2r8j4hpd2gd3f&st=4efl7475&dl=0"
+    },
+    {
+      "id": "1777848434396",
+      "title": "Ancient Art of Tea: Wisdom From the Ancient Chinese Tea Masters",
+      "author": "Warren Peltier",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848930/Screenshot_2026-05-03_at_17.46.53_kl2dzz.png",
+      "pdf": "https://www.dropbox.com/scl/fi/6vj7wta7c789z3r92qecd/The-Ancient-Art-of-Tea_-Wisdom-from-the-Old-Chinese-Tea-Warren-Peltier-John-T_-Kirby-Ph_D_-Lightning-Source-Inc_-Tier-3-N_p_-2011-isbn13-9780804841535-5f9b5a63c61da157fa8116aca92913a1-Anna-s-Archive.pdf?rlkey=90y40zba1og0hwkabsfn88dv2&st=gksfut37&dl=0"
+    },
+    {
+      "id": "1777848285397",
+      "title": "Tea life, Tea mind",
+      "author": "Sen Sōshitsu XV",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848785/Screenshot_2026-05-03_at_17.44.28_yebwgd.png",
+      "pdf": "https://www.dropbox.com/scl/fi/plywv75x77lke6mn2dqyq/Tea-Life-Tea-Mind-S_-Soshitsu-First-edition-New-York-1979-Published-for-the-Urasenke-Foundation-Kyoto-by-9780834801424-2e837c61a2e7269fe9dc4fba1d7d3370-Anna-s-Archive.pdf?rlkey=vojb3cwzoz1n39uzuchvnjv8b&st=xepcjz27&dl=0"
+    },
+    {
+      "id": "1777848207498",
+      "title": "Taoism: The Way of the Mystic",
+      "author": "J. C. Cooper",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848703/Screenshot_2026-05-03_at_17.43.05_rtrkvf.png",
+      "pdf": "https://www.dropbox.com/scl/fi/we9rgrmb1vhmf3rx4aglv/Taoism-_-The-Way-Of-The-Mystic-by-J_-C_-Cooper-Paperback-1972-Aquarian-Press-isbn13-9780850300963-fb7423ddd460bf923bcaea36de81a5d1-Anna-s-Archive.pdf?rlkey=tst1pi5bz8kk61jsvmfw1ewne&st=a6veymxo&dl=0"
+    },
+    {
+      "id": "1777848071883",
+      "title": "Taoism and Self Knowledge: The Chart for the Cultivation of Perfection",
+      "author": "C. Despeux",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848574/Screenshot_2026-05-03_at_17.39.58_o0bglp.png",
+      "pdf": "https://www.dropbox.com/scl/fi/bplc4rkm2ijmrmhklce3k/Taoism-and-Self-Knowledge-_-The-Chart-for-the-Cultivation-of-Despeux-Catherine-Pettit-J_-E_-E-Sinica-Leidensia-142-2019-Koninklijke-Brill-isbn13-9789004322158-c81fdae0ccf16453b1ddd2a66da24de4-Anna-s-Archive.pdf?rlkey=t8qjmdl9s0l25z3dvmvaz1psf&st=g7umeagh&dl=0"
+    },
+    {
+      "id": "1777847928135",
+      "title": "Nourishing the Essence of Life",
+      "author": "Eva Wong",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848390/Screenshot_2026-05-03_at_17.37.52_hhh0ja.png",
+      "pdf": "https://www.dropbox.com/scl/fi/j82j8ingz6smetp39wz7w/Nourishing-the-Essence-of-Life-_-The-Outer-Inner-and-Eva-Wong-Paperback-2004-Shambhala-Publications-Distributed-in-the-United-States-by-isbn13-9780834826489-679ba2205c28eb3bed2c1e548308d6b3-Anna-s-Archive.pdf?rlkey=dljgs350olubqqcax4qovimd0&st=sfxeaqyo&dl=0"
+    },
+    {
+      "id": "1777847717042",
+      "title": "Dim Sum: The Art of Chinese Tea Lunch: A Cookbook",
+      "author": "Ellen Leong Blonder",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848214/61PU-J5evmL._AC_UF1000_1000_QL80__znr5mj.jpg",
+      "pdf": "https://www.dropbox.com/scl/fi/esotdnurbg5f5pgx5qhyk/Dim-Sum_-The-Art-of-Chinese-Tea-Lunch_-A-Cookbook-Blonder-Ellen-1950-New-York-New-York-State-2002-New-York-_-Clarkson-Potter-isbn13-9780609608876-759c2ab31c8dc86bfc3035fbc22a6eef-Anna-s-Archive.pdf?rlkey=lyglz2ufo6bgju32aqkmxd15q&st=327mwqeg&dl=0"
+    },
+    {
+      "id": "1777847572007",
+      "title": "Creativity and Taoism: A Study of Chinese Philosophy, Art & Poetry",
+      "author": "Chang Chung-Yuan",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777848068/Screenshot_2026-05-03_at_17.32.07_qsepep.png",
+      "pdf": "https://www.dropbox.com/scl/fi/6j811jda8w9n9dmr18ywq/Creativity-and-Taoism_-A-Study-of-Chinese-Philosophy-Art-Chung-yuan-Chang-Zhao-Xian-Batt-January-15-2011-Singing-Dragon-isbn13-9780857010476-87758e4d57294e15f1a9851eb95d4ea1-Anna-s-Archive.pdf?rlkey=bevdnozbyj4p7y4xe623ynooj&st=x0ihnjn9&dl=0"
+    },
+    {
+      "id": "1777847390330",
+      "title": "Chinese tea: A cultural history and guide",
+      "author": "Liu Tong",
+      "cover": "https://res.cloudinary.com/dgeccazjt/image/upload/v1777847870/Screenshot_2026-05-03_at_17.29.13_rsvphs.png",
+      "pdf": "https://www.dropbox.com/scl/fi/iwit1i9490xlqtk759hwd/Chinese-tea-_-a-cultural-history-and-guide-Liu-Tong-Liu-Tong-author-2005-2005-China-Intercontinental-Press-isbn13-9787508508351-9d80fa08a3e163efb123e3e90348bfe0.pdf?rlkey=vj7dyh8ii4xkwgjszzy96v55z&st=g8zyzlms&dl=0"
+    }
+  ],
+  "videos": [
+    {
+      "id": "1777845489004",
+      "url": "https://www.youtube.com/watch?v=WVIB26KxR48&t=510s",
+      "title": "Why Teaware Looks the Way It Does"
+    },
+    {
+      "id": "1777845463154",
+      "url": "https://www.youtube.com/watch?v=xpAyvKrijrE&t=667s",
+      "title": "This Is What “Empty the Cup” Really Means"
+    },
+    {
+      "id": "1777845432889",
+      "url": "https://www.youtube.com/watch?v=pSdOsEuPfkI",
+      "title": "Un-becoming through The Work"
+    },
+    {
+      "id": "1777845386490",
+      "url": "https://www.youtube.com/watch?v=A8PCJphZBM4&t=16s",
+      "title": "Stop Calling Your Trauma \"Art\""
+    }
+  ],
+  "courses": {
+    "text": "",
+    "ctaLabel": "",
+    "ctaLink": ""
+  }
+}
